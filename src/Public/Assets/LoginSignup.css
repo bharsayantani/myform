@@ -95,6 +95,23 @@
     margin-top: 20px;
     margin-left: 180px;
 }
+.submit-button-logout button{
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 220px;
+    height: 59px;
+    color: #fff;
+    background: #4c00b4;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;    
+    margin: 20px 0px 0px 650px;
+
+}
 .gray{
     background: #eaeaea;
     color: #676767;

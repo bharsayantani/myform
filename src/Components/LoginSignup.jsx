@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 //import './LoginSignup.css';
 import '../Public/Assets/LoginSignup.css'
 
 const LoginSignup = () => {
-  const [action, setAction] = useState("Sign Up");
+
+  const location = useLocation();
+  const [action, setAction] = useState(location.state?.goToLogin ? "Login" : "Sign Up");
   const [name, setName] = useState("");
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate(); // 🔹 Add this
+  
+  
 
   const handleSubmit = async () => {
     setMsg("");
 
     if (action === "Sign Up") {
       try {
-        await axios.post("https://api.escuelajs.co/api/v1/users", {
+        await axios.post("https://api.escuelajs.co/api/v1/users", { 
           name,
           email,
           password,
@@ -82,6 +87,13 @@ const LoginSignup = () => {
       <div className="submit-button">
         <button onClick={handleSubmit}>{action}</button>
       </div>
+      {action === "Login" && (
+        <div className="forgot-password">
+          <span onClick={() => navigate("/forgot-password")} style={{ color: "blue", cursor: "pointer" }}>
+            Forgot Password?
+          </span>
+        </div>
+       )}
 
       <div className="switch-action" style={{ marginTop: '15px', textAlign: 'center' }}>
         {action === "Login" ? (
@@ -90,6 +102,7 @@ const LoginSignup = () => {
           <p>Already have an account? <span onClick={() => setAction("Login")} style={{ color: 'blue', cursor: 'pointer' }}>Login</span></p>
         )}
       </div>
+      
 
       <div style={{ color: "red", marginTop: "10px" }}>{msg}</div>
     </div>
