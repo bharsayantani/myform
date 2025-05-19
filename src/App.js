@@ -5,6 +5,8 @@ import LoginSignup from './Components/LoginSignup';
 import ForgotPassword from './Components/ForgotPassword';
 import Dashboard from './Components/Dashboard';
 import ProtectedRoute from './Components/ProtectedRoute';
+import About from './Pages/About';
+import Shop from './Pages/Shop';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+         <Route path="/dashboard/about" element={<About />} />
+         <Route path="/dashboard/shop" element={<Shop />} />
       </Routes>
     </Router>
   );
